@@ -1,6 +1,6 @@
 <?php
 
-namespace xqwtxon\SlapperRotationV2;
+namespace ReinfyTeam\SlapperRotation;
 
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerMoveEvent;
@@ -10,7 +10,7 @@ use pocketmine\network\mcpe\protocol\MovePlayerPacket;
 use pocketmine\player\Player;
 use slapper\entities\SlapperEntity;
 use slapper\entities\SlapperHuman;
-use xqwtxon\SlapperRotationV2\Main;
+use ReinfyTeam\SlapperRotation\Main;
 
 class SlapperListener implements Listener {
     public function __construct(private Main $plugin){
