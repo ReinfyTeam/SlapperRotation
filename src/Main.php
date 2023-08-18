@@ -46,7 +46,7 @@ class Main extends PluginBase {
         }
         if ($config->get("max-distance") < 4){
             $log->info(TextFormat::RED."Your max distance is too low. Make sure your max-distance in config is not at least higher on 4!");
-            $log->info("[INFO] Max-Distance was changed to 16 as default.");
+            $log->info("[INFO] Max-Distance was changed to 8 as default.");
             $config->set("max-distance", 8);
             return;
         }
