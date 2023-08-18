@@ -1,8 +1,8 @@
 <?php
 
-namespace xqwtxon\SlapperRotationV2;
+namespace ReinfyTeam\SlapperRotation;
 
-use xqwtxon\SlapperRotationV2\SlapperListener;
+use ReinfyTeam\SlapperRotation\SlapperListener;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\TextFormat;
 
