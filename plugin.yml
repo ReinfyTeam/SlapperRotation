@@ -2,7 +2,7 @@
 name: SlapperRotation
 version: 1.0.5
 main: ReinfyTeam\SlapperRotation\Main
-api: 4.0.0
+api: 5.0.0
 src-namespace-prefix: ReinfyTeam\SlapperRotation
 depend: Slapper
 author: ReinfyTeam
