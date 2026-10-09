@@ -1,4 +1,4 @@
-name: PHPStan
+name: Analyze PHP code with PHPStan
 on:
   - push
   - pull_request
@@ -16,5 +16,5 @@ jobs:
         with:
           php-version: ${{matrix.php-version}}
           install-path: "./dev/bin"
-      - name: phpstan analyze
+      - name: Run PHPStan at maximum level
         run: make phpstan PHP="php -dphar.readonly=0 -dmemory_limit=256M"
