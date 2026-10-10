@@ -14,47 +14,59 @@ class Main extends PluginBase {
         $this->checkConfig();
     }
     
-    private function checkConfig() :void{
-	$log = $this->getLogger();
-	$pluginConfigResource = $this->getResource("config.yml");
-	$pluginConfig = yaml_parse(stream_get_contents($pluginConfigResource));
-	fclose($pluginConfigResource);
-	    $config = $this->getConfig();
-		
-	    if($pluginConfig == false) {
-	    	$log->critical("Invalid configuration.");
-	    	$this->getServer()->getPluginManager()->disablePlugin($this);
-	    	return;
-	    }
+    private function checkConfig() : void{
+        $log = $this->getLogger();
+        $pluginConfigResource = $this->getResource("config.yml");
+        if($pluginConfigResource === null) {
+            $log->critical("Missing default configuration.");
+            $this->getServer()->getPluginManager()->disablePlugin($this);
+            return;
+        }
+        $contents = stream_get_contents($pluginConfigResource);
+        fclose($pluginConfigResource);
+        if($contents === false) {
+            $log->critical("Unable to read default configuration.");
+            $this->getServer()->getPluginManager()->disablePlugin($this);
+            return;
+        }
+        $pluginConfig = yaml_parse($contents);
+        if(!is_array($pluginConfig) || !array_key_exists("config-version", $pluginConfig)) {
+            $log->critical("Invalid configuration.");
+            $this->getServer()->getPluginManager()->disablePlugin($this);
+            return;
+        }
 
-	    if($config->get("config-version") === $pluginConfig["config-version"]) return;
-	    $log->notice("Your config is outdated!");
-	    $log->info("Your old config.yml is renamed as old-config.yml");
-	    @rename($this->getDataFolder(). 'config.yml', 'old-config.yml');
-	    $this->saveResource("config.yml");
+        $config = $this->getConfig();
+        if($config->get("config-version") === $pluginConfig["config-version"]) return;
+        $log->notice("Your config is outdated!");
+        $log->info("Your old config.yml is renamed as old-config.yml");
+        @rename($this->getDataFolder() . "config.yml", "old-config.yml");
+        $this->saveResource("config.yml");
     }
 
 	public function onEnable() :void {
         $this->loadListener();
         $config = $this->getConfig();
         $log = $this->getLogger();
-        $maxDistance = $config->get("max-distance");
-        if (!isset($maxDistance)){
+        $maxDistanceValue = $config->get("max-distance");
+        if (!is_numeric($maxDistanceValue)){
             $log->info("Max Distance cant be blank!");
             $config->set("max-distance", 8);
+            $config->save();
             return;
         }
-        if ($config->get("max-distance") < 4){
+        if ((float) $maxDistanceValue < 4){
             $log->info(TextFormat::RED."Your max distance is too low. Make sure your max-distance in config is not at least higher on 4!");
             $log->info("[INFO] Max-Distance was changed to 8 as default.");
             $config->set("max-distance", 8);
+            $config->save();
             return;
         }
 		$this->saveDefaultConfig();
 	}
         
 
-        private function loadListener() {
-               $this->getServer()->getPluginManager()->registerEvents(new SlapperListener($this), $this);
+        private function loadListener() : void {
+            $this->getServer()->getPluginManager()->registerEvents(new SlapperListener($this), $this);
         }
 }

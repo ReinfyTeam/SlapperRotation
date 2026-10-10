@@ -1,4 +1,11 @@
 parameters:
+	bootstrapFiles:
+		- vendor/autoload.php
 	level: 9
 	paths:
 		- ../src
+	treatPhpDocTypesAsCertain: false
+	scanFiles:
+		- stubs/slapper.stub.php
+	stubFiles:
+		- stubs/slapper.stub.php
