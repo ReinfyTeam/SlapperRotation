@@ -3,9 +3,9 @@
    "description": "PHPStan configuration for SlapperRotation.",
    "license": "CC-BY-NC-SA-4.0",
    "require": {
-      "phpstan/phpstan": "^1.12",
+      "phpstan/phpstan": "^2.1",
       "pocketmine/pocketmine-mp": "^5.0",
-      "phpstan/phpstan-strict-rules": "^1.0",
+      "phpstan/phpstan-strict-rules": "^2.0",
       "phpstan/extension-installer": "^1.0"
    },
    "autoload": {

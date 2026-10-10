@@ -17,6 +17,19 @@ class SlapperListener implements Listener {
     public function __construct(private Main $plugin){
         //NOOP
     }
+
+    private function getActorRuntimeId(SlapperEntity $entity) : int {
+        return $entity->getId();
+    }
+
+    private function getEyeHeight(SlapperHuman $entity) : float {
+        return $entity->getEyeHeight();
+    }
+
+    private function isOnGround(SlapperHuman $entity) : bool {
+        return $entity->onGround;
+    }
+
     public function onMove(PlayerMoveEvent $event): void {
         $player = $event->getPlayer();
         $maxDistanceValue = $this->plugin->getConfig()->get("max-distance");
@@ -33,19 +46,22 @@ class SlapperListener implements Listener {
                     $yaw = (($angle * 180) / M_PI) - 90;
                     $angle = atan2((new Vector2($entityLocation->x, $entityLocation->z))->distance(new Vector2($player->getLocation()->x, $player->getLocation()->z)), $player->getLocation()->y - $entityLocation->y);
                     $pitch = (($angle * 180) / M_PI) - 90;
-
                     if ($entity instanceof SlapperHuman) {
+                        $actorRuntimeId = $this->getActorRuntimeId($entity);
+                        $eyeHeight = $this->getEyeHeight($entity);
+                        $onGround = $this->isOnGround($entity);
                         $pk = new MovePlayerPacket();
-                        $pk->actorRuntimeId = $entity->getId();
-                        $pk->position = new Vector3($entityLocation->x, $entityLocation->y + $entity->getEyeHeight(), $entityLocation->z);
+                        $pk->actorRuntimeId = $actorRuntimeId;
+                        $pk->position = new Vector3($entityLocation->x, $entityLocation->y + $eyeHeight, $entityLocation->z);
                         $pk->yaw = $yaw;
                         $pk->pitch = $pitch;
                         $pk->headYaw = $yaw;
-                        $pk->onGround = $entity->onGround;
+                        $pk->onGround = $onGround;
                         $player->getNetworkSession()->sendDataPacket($pk);
                     } elseif ($entity instanceof SlapperEntity) {
+                        $actorRuntimeId = $this->getActorRuntimeId($entity);
                         $pk = new MoveActorAbsolutePacket();
-                        $pk->actorRuntimeId = $entity->getId();
+                        $pk->actorRuntimeId = $actorRuntimeId;
                         $pk->position = new Vector3($entityLocation->x, $entityLocation->y, $entityLocation->z);
                         $pk->pitch = $pitch;
                         $pk->yaw = $yaw;
