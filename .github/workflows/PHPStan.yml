@@ -14,7 +14,7 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
       - name: Set up PHP environment
-        uses: pmmp/setup-php-action@e232f72a4330a07aae8418e8aa56b64efcdda636
+        uses: pmmp/setup-php-action@e031917a35223b96cba12fe19ace0765c91f6bfb
         with:
           php-version: ${{matrix.php-version}}
           install-path: "./dev/bin"
