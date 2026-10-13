@@ -18,7 +18,7 @@ class SlapperListener implements Listener {
         //NOOP
     }
 
-    private function getActorRuntimeId(SlapperEntity $entity) : int {
+    private function getActorRuntimeId(SlapperEntity|SlapperHuman $entity) : int {
         return $entity->getId();
     }
 
@@ -57,6 +57,7 @@ class SlapperListener implements Listener {
                         $pk->pitch = $pitch;
                         $pk->headYaw = $yaw;
                         $pk->onGround = $onGround;
+                        $pk->telemetryData = null;
                         $player->getNetworkSession()->sendDataPacket($pk);
                     } elseif ($entity instanceof SlapperEntity) {
                         $actorRuntimeId = $this->getActorRuntimeId($entity);
