@@ -2,9 +2,16 @@
    "name": "pocketmine/phpstan-plugin-config",
    "description": "PHPStan configuration for SlapperRotation.",
    "license": "CC-BY-NC-SA-4.0",
+   "repositories": [
+      {
+         "type": "vcs",
+         "url": "https://github.com/axolotl-pm/PocketMine-MP",
+         "no-api": true
+      }
+   ],
    "require": {
       "phpstan/phpstan": "^2.1",
-      "pocketmine/pocketmine-mp": "^5.0",
+      "axolotl-pm/pocketmine-mp": "5.49.1",
       "phpstan/phpstan-strict-rules": "^2.0",
       "phpstan/extension-installer": "^1.0"
    },
