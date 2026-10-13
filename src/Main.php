@@ -40,8 +40,12 @@ class Main extends PluginBase {
         if($config->get("config-version") === $pluginConfig["config-version"]) return;
         $log->notice("Your config is outdated!");
         $log->info("Your old config.yml is renamed as old-config.yml");
-        @rename($this->getDataFolder() . "config.yml", "old-config.yml");
-        $this->saveResource("config.yml");
+        $dataFolder = rtrim($this->getDataFolder(), DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR;
+        if(!rename($dataFolder . "config.yml", $dataFolder . "old-config.yml")) {
+            $log->error("Unable to preserve the old config.yml before migration.");
+            return;
+        }
+        $this->saveResource("config.yml", true);
     }
 
 	public function onEnable() :void {

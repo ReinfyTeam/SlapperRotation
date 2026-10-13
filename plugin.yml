@@ -1,6 +1,6 @@
 ---
 name: SlapperRotation
-version: 1.0.5
+version: 1.0.6
 main: ReinfyTeam\SlapperRotation\Main
 api: 5.0.0
 src-namespace-prefix: ReinfyTeam\SlapperRotation
