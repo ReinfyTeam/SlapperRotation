@@ -2,7 +2,10 @@
 
 namespace slapper\entities;
 
-class SlapperEntity {
+use pocketmine\entity\Entity;
+use pocketmine\entity\Human;
+
+class SlapperEntity extends Entity {
     public bool $onGround;
 
     public function getId(): int {}
@@ -10,6 +13,6 @@ class SlapperEntity {
     public function getLocation(): mixed {}
 }
 
-class SlapperHuman extends SlapperEntity {
+class SlapperHuman extends Human {
     public function getEyeHeight(): float {}
 }

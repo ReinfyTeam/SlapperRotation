@@ -4,8 +4,8 @@ parameters:
 	level: max
 	paths:
 		- ../src
+	scanDirectories:
+		- vendor/axolotl-pm/pocketmine-mp/src
+		- vendor/axolotl-pm/pocketmine-mp/generated
+		- stubs
 	treatPhpDocTypesAsCertain: false
-	scanFiles:
-		- stubs/slapper.stub.php
-	stubFiles:
-		- stubs/slapper.stub.php
