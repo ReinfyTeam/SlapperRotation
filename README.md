@@ -16,23 +16,23 @@ SlapperRotation is maintained by ReinfyTeam. Compatibility checks in this campai
 server distribution.
 
 # Features
-- Ability to configure the distance view of the Slappers.
+- Configure the maximum distance at which Slapper entities track nearby players.
 
 # Disclaimer
 This plugin is designed for PocketMine-MP. If you are using a fork or spoon,
 please report issues to that project instead.
 
-# How to Install?
+# Installation
 - You must have the [Slapper](https://github.com/ReinfyTeam/Slapper) plugin.
-- Just put this plugin in your `plugins/` folder, and it should work!<br>
-- You can configure the plugin by accessing `plugin_data/SlapperRotation/config.yml`
+- Put this plugin in your `plugins/` folder.
+- Configure the plugin in `plugin_data/SlapperRotation/config.yml`.
 
-# Report a Issue/Bug
-You found a bug or a plugin issue?
+# Report an issue
+If you find a bug or another plugin issue:
 - Contact support in the [Discord Server](https://discord.gg/v2rNeHaptd)
 - Create an [Issue](https://github.com/ReinfyTeam/SlapperRotation/issues)
-- Write your bug & the issue you are having with all informations including the crash or errors so I can track the issue.
-- Submit the issue and be patient for a response for a solution to your problem :D
+- Include the problem, crash or error details, and relevant logs so the issue can be investigated.
+- Submit the issue and wait for a response.
 
 # Build and test
 
