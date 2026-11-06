@@ -36,7 +36,7 @@ If you find a bug or another plugin issue:
 
 # Build and test
 
-The build process uses [DevTools](https://github.com/NhanAZ/DevTools) to package
+The build process uses [DevTools](https://github.com/AxolotlBucketLabs/DevTools) to package
 and validate the plugin PHAR. The PHPStan workflow analyzes the source at its
 maximum configured level:
 
